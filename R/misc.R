@@ -52,6 +52,7 @@ is.tabular <- function(x){
 #' @param check.value perform a sanity check to see if provided numeric value is correct (defaults to \code{TRUE})
 #' @return a character value with formatted percent
 #' @export
+#' @importFrom pander panderOptions
 pct <- function(x, digits = panderOptions('digits'), type = c('percent', '%', 'proportion'), check.value = TRUE){
 
     if (!is.numeric(x))
