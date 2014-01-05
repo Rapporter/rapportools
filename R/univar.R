@@ -12,9 +12,6 @@ univar <- function(x, subset = NULL, fn, na.rm = TRUE, ...) {
     if (base::missing(x))
         stop('Variable not specified.')
 
-    if (!(is.variable(x)))
-        stop('Descriptives can be calculated only for variables.')
-
     ## subset the data
     if (!is.null(subset)){
         x.subset <- subset.default(x, subset)
@@ -91,12 +88,12 @@ rp.missing <- nmissing
 #' @aliases percent rp.percent
 percent <- function(x, subset = NULL, na.rm = TRUE, pct = FALSE, ...){
     if (is.logical(x)){
-        res <- base::sum(x, na.rm = na.rm) / ifelse(na.rm, valid(x), length(x)) * 100
+        res <- base::sum(x, na.rm = na.rm) / ifelse(na.rm, nvalid(x), length(x)) * 100
     } else {
         if (na.rm)
-            res <- valid(x, subset) / valid(x) * 100
+            res <- nvalid(x, subset) / nvalid(x) * 100
         else
-            res <- valid(x, subset) / length(x) * 100
+            res <- nvalid(x, subset) / length(x) * 100
     }
     return (ifelse(pct, pct(res, ...), res))
 }
@@ -177,7 +174,7 @@ rp.mean <- mean
 #' @export
 #' @aliases se.mean rp.se.mean
 se.mean<- function(...)
-    sqrt(var(..., na.rm = TRUE) / valid(...))
+    sqrt(var(..., na.rm = TRUE) / nvalid(...))
 #' @export
 rp.se.mean <- se.mean
 
