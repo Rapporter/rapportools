@@ -1,9 +1,9 @@
-\name{valid}
+\name{nvalid}
+\alias{nvalid}
 \alias{rp.valid}
-\alias{valid}
-\title{Valid Cases}
+\title{Number of Valid Cases}
 \usage{
-valid(...)
+nvalid(...)
 }
 \arguments{
   \item{...}{parameters to be passed to \code{univar}

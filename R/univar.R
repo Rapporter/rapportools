@@ -34,30 +34,43 @@ univar <- function(x, subset = NULL, fn, na.rm = TRUE, ...) {
 }
 
 
-#' Valid Cases
+#' Number of Cases
 #'
 #' Returns the number of valid (non-\code{NA}) values in a variable. This is a wrapper around \code{\link{univar}} function with \code{\link{length}} function passed in \code{fn} argument, but with missing values previously removed. However, it's not possible to cancel \code{NA} omission with this function (doing so will yield error).
 #' @param ... parameters to be passed to \code{univar} function
 #' @return a numeric value with number of valid (non-NA) vector elements
 #' @export
-#' @aliases valid rp.valid
-valid <- function(...)
+#' @aliases n rp.n
+n <- function(...)
+    univar(..., fn = function(...) length(..1))
+#' @export
+rp.n <- n
+
+
+#' Number of Valid Cases
+#'
+#' Returns the number of valid (non-\code{NA}) values in a variable. This is a wrapper around \code{\link{univar}} function with \code{\link{length}} function passed in \code{fn} argument, but with missing values previously removed. However, it's not possible to cancel \code{NA} omission with this function (doing so will yield error).
+#' @param ... parameters to be passed to \code{univar} function
+#' @return a numeric value with number of valid (non-NA) vector elements
+#' @export
+#' @aliases nvalid rp.valid
+nvalid <- function(...)
     univar(..., fn = function(...) length(na.omit(..1)))
 #' @export
-rp.valid <- valid
+rp.valid <- nvalid
 
 
-#' Missing Cases
+#' Number of Missing Cases
 #'
 #' Returns a number of missing (\code{NA}) values in a variable. This is a wrapper around \code{\link{univar}} function with anonymous function passed to count number of \code{NA} elements in a variable.
 #' @param ... parameters to be passed to \code{univar} function
 #' @return a numeric value with number of missing vector elements
 #' @export
-#' @aliases missing rp.missing
-missing <- function(...)
+#' @aliases nmissing rp.missing
+nmissing <- function(...)
     univar(..., fn = function(...) base::sum(is.na(..1)))
 #' @export
-rp.missing <- missing
+rp.missing <- nmissing
 
 
 #' Percent

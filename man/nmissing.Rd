@@ -1,9 +1,9 @@
-\name{missing}
-\alias{missing}
+\name{nmissing}
+\alias{nmissing}
 \alias{rp.missing}
-\title{Missing Cases}
+\title{Number of Missing Cases}
 \usage{
-missing(...)
+nmissing(...)
 }
 \arguments{
   \item{...}{parameters to be passed to \code{univar}
