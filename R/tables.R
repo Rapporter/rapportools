@@ -20,7 +20,6 @@
 #' ## c
 #' rp.desc("age", c("gender", "student"), c("Average" = mean, "Deviation" = sd), ius2008, remove.duplicate = FALSE)
 #' @export
-#' @importFrom reshape melt melt.data.frame melt.table cast
 #' @importFrom plyr each is.formula
 rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = TRUE, margins = NULL, subset = TRUE, fill = NA, add.missing = FALSE, total.name = 'Total', varcol.name = 'Variable', use.labels = getOption('rapport.use.labels'), remove.duplicate = TRUE) {
 
