@@ -17,6 +17,7 @@ install:
   - "[ ! -d ~/R ] && mkdir ~/R"
   - R --version
   - R -e '.libPaths(); sessionInfo()'
+  - Rscript -e 'install.packages(c("reshape", "plyr", "pander"), dep = TRUE, repos = "http://cran.r-project.org")'
 
 # run tests
 script:
