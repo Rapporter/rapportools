@@ -172,7 +172,7 @@ rp.freq <- freq <- function(f.vars, data, na.rm = TRUE, include.na = FALSE, drop
         tbl <- tbl[order(tbl$N), ]
 
     ## calculate freqs
-    tbl <- transform(tbl, `%` = N / sum(N) * 100, check.names = FALSE) # add percentage
+    tbl <- transform(tbl, `%` = N / base::sum(N) * 100, check.names = FALSE) # add percentage
     tbl <- transform(tbl, `Cumul. N` = cumsum(N), `Cumul. %` = cumsum(`%`), check.names = FALSE) # add cumulatives
 
     ## NAs not removed

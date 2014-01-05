@@ -2,7 +2,7 @@
 \alias{skewness}
 \title{Skewness}
 \usage{
-skewness(x, na.rm = FALSE)
+skewness(x, na.rm = TRUE)
 }
 \arguments{
   \item{x}{a \code{variable}, \code{matrix} or a

@@ -1,11 +1,12 @@
-\name{rp.mean}
+\name{mean}
+\alias{mean}
 \alias{rp.mean}
 \title{Mean}
 \usage{
-rp.mean(...)
+mean(...)
 }
 \arguments{
-  \item{...}{parameters to be passed to \code{rp.univar}
+  \item{...}{parameters to be passed to \code{univar}
   function}
 }
 \value{
@@ -14,6 +15,6 @@ a numeric value with variable's mean
 \description{
 Calculates mean of given variable by passing
 \code{\link{sum}} as \code{fn} argument to
-\code{\link{rp.univar}} function.
+\code{\link{univar}} function.
 }
 

@@ -12,7 +12,7 @@
 #' @aliases name rp.name
 name <- function(x){
 
-    if (missing(x))
+    if (base::missing(x))
         stop('variable not provided')
 
     if (is.atomic(x)){
@@ -66,7 +66,7 @@ rp.name <- name
 #' @aliases label rp.label
 label <- function(x, fallback = TRUE, simplify = TRUE){
 
-    if (missing(x))
+    if (base::missing(x))
         stop('Variable not provided.')
 
     if (is.null(x))
@@ -132,7 +132,7 @@ rp.label <- label
 #' @aliases label<- rp.label<-
 `label<-` <- function(var, value){
 
-    if (missing(var) | missing(value))
+    if (base::missing(var) | base::missing(value))
         stop('Both variable name and label should be provided.')
 
     if (!is.variable(var))

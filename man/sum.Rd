@@ -1,11 +1,12 @@
-\name{rp.sum}
+\name{sum}
 \alias{rp.sum}
+\alias{sum}
 \title{Sum}
 \usage{
-rp.sum(...)
+sum(...)
 }
 \arguments{
-  \item{...}{parameters to be passed to \code{rp.univar}
+  \item{...}{parameters to be passed to \code{univar}
   function}
 }
 \value{
@@ -14,6 +15,6 @@ a numeric value with sum of vector elements
 \description{
 Returns the sum of variable's elements, by passing
 \code{\link{sum}} as \code{fn} argument to
-\code{\link{rp.univar}} function.
+\code{\link{univar}} function.
 }
 

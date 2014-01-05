@@ -1,11 +1,13 @@
-\name{rp.iqr}
+\name{iqr}
+\alias{IQR}
+\alias{iqr}
 \alias{rp.iqr}
 \title{Interquartile Range}
 \usage{
-rp.iqr(...)
+iqr(...)
 }
 \arguments{
-  \item{...}{parameters to be passed to \code{rp.univar}
+  \item{...}{parameters to be passed to \code{univar}
   function}
 }
 \value{
@@ -13,6 +15,6 @@ a numeric value with variable's interquartile range
 }
 \description{
 Calculates interquartile range of given variable. See
-\code{\link{rp.univar}} for details.
+\code{\link{univar}} for details.
 }
 

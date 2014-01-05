@@ -1,11 +1,12 @@
-\name{rp.min}
+\name{min}
+\alias{min}
 \alias{rp.min}
 \title{Minimum}
 \usage{
-rp.min(...)
+min(...)
 }
 \arguments{
-  \item{...}{parameters to be passed to \code{rp.univar}
+  \item{...}{parameters to be passed to \code{univar}
   function}
 }
 \value{
@@ -14,6 +15,6 @@ a numeric value with minimum value
 \description{
 Returns the minimum of all values in a vector by passing
 \{code{\link{min}} as \code{fn} argument to
-\code{\link{rp.univar}} function.
+\code{\link{univar}} function.
 }
 

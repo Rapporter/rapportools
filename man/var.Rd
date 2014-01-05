@@ -1,11 +1,12 @@
-\name{rp.var}
+\name{var}
 \alias{rp.var}
+\alias{var}
 \title{Variance}
 \usage{
-rp.var(...)
+var(...)
 }
 \arguments{
-  \item{...}{parameters to be passed to \code{rp.univar}
+  \item{...}{parameters to be passed to \code{univar}
   function}
 }
 \value{
@@ -13,6 +14,6 @@ a numeric value with variable's variance
 }
 \description{
 Calculates variance of given variable. See
-\code{\link{rp.univar}} for details.
+\code{\link{univar}} for details.
 }
 

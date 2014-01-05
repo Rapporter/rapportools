@@ -2,7 +2,7 @@
 \alias{kurtosis}
 \title{Kurtosis}
 \usage{
-kurtosis(x, na.rm = FALSE)
+kurtosis(x, na.rm = TRUE)
 }
 \arguments{
   \item{x}{a \code{variable}, \code{matrix} or a

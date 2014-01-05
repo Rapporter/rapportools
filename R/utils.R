@@ -64,7 +64,7 @@ is.number <- function(x, integer = FALSE) {
 #' is.variable(list())      # [1] FALSE
 #' @export
 is.variable <- function(x){
-    if (missing(x))
+    if (base::missing(x))
         stop('test object not provided')
     is.atomic(x) & !is.null(x) & is.null(dim(x))
 }
@@ -84,7 +84,7 @@ is.variable <- function(x){
 #' is.tabular(pi)                   # [1] FALSE
 #' @export
 is.tabular <- function(x){
-    if (missing(x))
+    if (base::missing(x))
         stop('no object to test table')
     inherits(x, c('matrix', 'data.frame')) && length(dim(x)) == 2
 }

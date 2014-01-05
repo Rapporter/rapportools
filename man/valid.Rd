@@ -1,11 +1,12 @@
-\name{rp.valid}
+\name{valid}
 \alias{rp.valid}
+\alias{valid}
 \title{Valid Cases}
 \usage{
-rp.valid(...)
+valid(...)
 }
 \arguments{
-  \item{...}{parameters to be passed to \code{rp.univar}
+  \item{...}{parameters to be passed to \code{univar}
   function}
 }
 \value{
@@ -13,8 +14,8 @@ a numeric value with number of valid (non-NA) vector
 elements
 }
 \description{
-Returns a number of valid (non-\code{NA}) values in a
-variable. This is a wrapper around \code{\link{rp.univar}}
+Returns the number of valid (non-\code{NA}) values in a
+variable. This is a wrapper around \code{\link{univar}}
 function with \code{\link{length}} function passed in
 \code{fn} argument, but with missing values previously
 removed. However, it's not possible to cancel \code{NA}

@@ -1,11 +1,12 @@
-\name{rp.range}
+\name{range}
+\alias{range}
 \alias{rp.range}
 \title{Range}
 \usage{
-rp.range(...)
+range(...)
 }
 \arguments{
-  \item{...}{parameters to be passed to \code{rp.univar}
+  \item{...}{parameters to be passed to \code{univar}
   function}
 }
 \value{
@@ -13,6 +14,6 @@ a numeric value with calculated range
 }
 \description{
 Calculates difference between the largest and the smallest
-value in a vector. See \code{\link{rp.univar}} for details.
+value in a vector. See \code{\link{univar}} for details.
 }
 

@@ -7,10 +7,9 @@
 #' @param na.rm a logical value indicating whether \code{NA}'s should be removed (defaults to \code{TRUE})
 #' @param ... additional arguments for function specified in \code{fn}
 #' @return a numeric
-#' @export
-rp.univar <- function(x, subset = NULL, fn, na.rm = TRUE, ...){
+univar <- function(x, subset = NULL, fn, na.rm = TRUE, ...) {
 
-    if (missing(x))
+    if (base::missing(x))
         stop('Variable not specified.')
 
     if (!(is.variable(x)))
@@ -37,23 +36,28 @@ rp.univar <- function(x, subset = NULL, fn, na.rm = TRUE, ...){
 
 #' Valid Cases
 #'
-#' Returns a number of valid (non-\code{NA}) values in a variable. This is a wrapper around \code{\link{rp.univar}} function with \code{\link{length}} function passed in \code{fn} argument, but with missing values previously removed. However, it's not possible to cancel \code{NA} omission with this function (doing so will yield error).
-#' @param ... parameters to be passed to \code{rp.univar} function
+#' Returns the number of valid (non-\code{NA}) values in a variable. This is a wrapper around \code{\link{univar}} function with \code{\link{length}} function passed in \code{fn} argument, but with missing values previously removed. However, it's not possible to cancel \code{NA} omission with this function (doing so will yield error).
+#' @param ... parameters to be passed to \code{univar} function
 #' @return a numeric value with number of valid (non-NA) vector elements
 #' @export
-rp.valid <- function(...)
-    rp.univar(..., fn = function(...) length(na.omit(..1)))
+#' @aliases valid rp.valid
+valid <- function(...)
+    univar(..., fn = function(...) length(na.omit(..1)))
+#' @export
+rp.valid <- valid
 
 
 #' Missing Cases
 #'
-#' Returns a number of missing (\code{NA}) values in a variable. This is a wrapper around \code{\link{rp.univar}} function with anonymous function passed to count number of \code{NA} elements in a variable.
-#' @param ... parameters to be passed to \code{rp.univar} function
+#' Returns a number of missing (\code{NA}) values in a variable. This is a wrapper around \code{\link{univar}} function with anonymous function passed to count number of \code{NA} elements in a variable.
+#' @param ... parameters to be passed to \code{univar} function
 #' @return a numeric value with number of missing vector elements
 #' @export
-rp.missing <- function(...)
-    rp.univar(..., fn = function(...) sum(is.na(..1)))
-
+#' @aliases missing rp.missing
+missing <- function(...)
+    univar(..., fn = function(...) base::sum(is.na(..1)))
+#' @export
+rp.missing <- missing
 
 
 #' Percent
@@ -68,138 +72,152 @@ rp.missing <- function(...)
 #' @examples \dontrun{
 #' set.seed(0)
 #' x <- sample(5, 100, replace = TRUE)
-#' rp.percent(x > 2)
+#' percent(x > 2)
 #' }
 #' @export
-rp.percent <- function(x, subset = NULL, na.rm = TRUE, pct = FALSE, ...){
+#' @aliases percent rp.percent
+percent <- function(x, subset = NULL, na.rm = TRUE, pct = FALSE, ...){
     if (is.logical(x)){
-        res <- sum(x, na.rm = na.rm) / ifelse(na.rm, rp.valid(x), length(x)) * 100
+        res <- base::sum(x, na.rm = na.rm) / ifelse(na.rm, valid(x), length(x)) * 100
     } else {
         if (na.rm)
-            res <- rp.valid(x, subset) / rp.valid(x) * 100
+            res <- valid(x, subset) / valid(x) * 100
         else
-            res <- rp.valid(x, subset) / length(x) * 100
+            res <- valid(x, subset) / length(x) * 100
     }
     return (ifelse(pct, pct(res, ...), res))
 }
+#' @export
+rp.percent <- percent
 
 
 #' Minimum
 #'
-#' Returns the minimum of all values in a vector by passing \{code{\link{min}} as \code{fn} argument to \code{\link{rp.univar}} function.
-#' @param ... parameters to be passed to \code{rp.univar} function
+#' Returns the minimum of all values in a vector by passing \{code{\link{min}} as \code{fn} argument to \code{\link{univar}} function.
+#' @param ... parameters to be passed to \code{univar} function
 #' @return a numeric value with minimum value
 #' @export
-rp.min <- function(...)
-    rp.univar(..., fn = base::min)
+#' @aliases min rp.min
+min <- function(...)
+    univar(..., fn = base::min)
+#' @export
+rp.min <- min
 
 
 #' Maximum
 #'
-#' Returns the maximum of all values in a vector by passing \{code{\link{max}} as \code{fn} argument to \code{\link{rp.univar}} function.
-#' @param ... parameters to be passed to \code{rp.univar} function
+#' Returns the maximum of all values in a vector by passing \{code{\link{max}} as \code{fn} argument to \code{\link{univar}} function.
+#' @param ... parameters to be passed to \code{univar} function
 #' @return a numeric value with maximum value
 #' @export
-rp.max <- function(...)
-    rp.univar(..., fn = base::max)
+#' @aliases max rp.max
+max <- function(...)
+    univar(..., fn = base::max)
+#' @export
+rp.max <- max
 
 
 #' Range
 #'
-#' Calculates difference between the largest and the smallest value in a vector. See \code{\link{rp.univar}} for details.
-#' @param ... parameters to be passed to \code{rp.univar} function
+#' Calculates difference between the largest and the smallest value in a vector. See \code{\link{univar}} for details.
+#' @param ... parameters to be passed to \code{univar} function
 #' @return a numeric value with calculated range
 #' @export
-rp.range <- function(...)
-    rp.univar(..., fn = function(...) diff(range(..1, ...)))
+#' @aliases range rp.range
+range <- function(...)
+    univar(..., fn = function(...) diff(base::range(..1, ...)))
+#' @export
+rp.range <- range
 
 
 #' Sum
 #'
-#' Returns the sum of variable's elements, by passing \code{\link{sum}} as \code{fn} argument to \code{\link{rp.univar}} function.
-#' @param ... parameters to be passed to \code{rp.univar} function
+#' Returns the sum of variable's elements, by passing \code{\link{sum}} as \code{fn} argument to \code{\link{univar}} function.
+#' @param ... parameters to be passed to \code{univar} function
 #' @return a numeric value with sum of vector elements
 #' @export
-rp.sum <- function(...)
-    rp.univar(..., fn = base::sum)
+#' @aliases sum rp.sum
+sum <- function(...)
+    univar(..., fn = base::sum)
+#' @export
+rp.sum <- sum
 
 
 #' Mean
 #'
-#' Calculates mean of given variable by passing \code{\link{sum}} as \code{fn} argument to \code{\link{rp.univar}} function.
-#' @param ... parameters to be passed to \code{rp.univar} function
+#' Calculates mean of given variable by passing \code{\link{sum}} as \code{fn} argument to \code{\link{univar}} function.
+#' @param ... parameters to be passed to \code{univar} function
 #' @return a numeric value with variable's mean
 #' @export
-rp.mean <- function(...)
-    rp.univar(..., fn = mean.default)
+#' @aliases mean rp.mean
+mean <- function(...)
+    univar(..., fn = mean.default)
+#' @export
+rp.mean <- mean
 
 
 #' Standard Error of Mean
 #'
-#' Calculates standard error of mean for given variable. See \code{\link{rp.univar}} for details.
-#' @param ... parameters to be passed to \code{rp.univar} function
+#' Calculates standard error of mean for given variable. See \code{\link{univar}} for details.
+#' @param ... parameters to be passed to \code{univar} function
 #' @return a numeric value with standard error of mean
 #' @export
-rp.se.mean<- function(...)
-    sqrt(rp.var(..., na.rm = TRUE) / rp.valid(...))
+#' @aliases se.mean rp.se.mean
+se.mean<- function(...)
+    sqrt(var(..., na.rm = TRUE) / valid(...))
+#' @export
+rp.se.mean <- se.mean
 
 
 #' Standard Deviation
 #'
-#' Calculates standard deviation of given variable. See \code{\link{rp.univar}} for details.
-#' @param ... parameters to be passed to \code{rp.univar} function
+#' Calculates standard deviation of given variable. See \code{\link{univar}} for details.
+#' @param ... parameters to be passed to \code{univar} function
 #' @return a numeric value with variable's standard deviation
 #' @export
-rp.sd <- function(...)
-    rp.univar(..., fn = stats::sd)
+#' @aliases sd rp.sd
+sd <- function(...)
+    univar(..., fn = stats::sd)
+#' @export
+rp.sd <- sd
 
 
 #' Variance
 #'
-#' Calculates variance of given variable. See \code{\link{rp.univar}} for details.
-#' @param ... parameters to be passed to \code{rp.univar} function
+#' Calculates variance of given variable. See \code{\link{univar}} for details.
+#' @param ... parameters to be passed to \code{univar} function
 #' @return a numeric value with variable's variance
 #' @export
-rp.var <- function(...)
-    rp.univar(..., fn = stats::var)
+#' @aliases var rp.var
+var <- function(...)
+    univar(..., fn = stats::var)
+#' @export
+rp.var <- var
 
 
 #' Median
 #'
-#' Calculates median of given variable. See \code{\link{rp.univar}} for details.
-#' @param ... parameters to be passed to \code{rp.univar} function
+#' Calculates median of given variable. See \code{\link{univar}} for details.
+#' @param ... parameters to be passed to \code{univar} function
 #' @return a numeric value with variable's median
 #' @export
-rp.median <- function(...)
-    rp.univar(..., fn = stats::median.default)
+#' @aliases median rp.median
+median <- function(...)
+    univar(..., fn = stats::median.default)
+#' @export
+rp.median <- median
 
 
 #' Interquartile Range
 #'
-#' Calculates interquartile range of given variable. See \code{\link{rp.univar}} for details.
-#' @param ... parameters to be passed to \code{rp.univar} function
+#' Calculates interquartile range of given variable. See \code{\link{univar}} for details.
+#' @param ... parameters to be passed to \code{univar} function
 #' @return a numeric value with variable's interquartile range
 #' @export
-rp.iqr <- function(...)
-    rp.univar(..., fn = stats::IQR)
-
-
-#' Skewness
-#'
-#' Calculates skewness of given variable. See \code{\link{rp.univar}} for details.
-#' @param ... parameters to be passed to \code{rp.univar} function
-#' @return a numeric value with variable's skewness
+#' @aliases iqr IQR rp.iqr
+iqr <- function(...)
+    univar(..., fn = stats::IQR)
 #' @export
-rp.skewness <- function(...)
-    rp.univar(..., fn = skewness)
-
-
-#' Kurtosis
-#'
-#' Calculates kurtosis of given variable. See \code{\link{rp.univar}} for details.
-#' @param ... parameters to be passed to \code{rp.univar} function
-#' @return a numeric value with variable's kurtosis
+IQR <- iqr
 #' @export
-rp.kurtosis <- function(...)
-    rp.univar(..., fn = kurtosis)
-
+rp.iqr <- iqr

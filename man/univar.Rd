@@ -1,8 +1,8 @@
-\name{rp.univar}
-\alias{rp.univar}
+\name{univar}
+\alias{univar}
 \title{Descriptive Statistics}
 \usage{
-rp.univar(x, subset = NULL, fn, na.rm = TRUE, ...)
+univar(x, subset = NULL, fn, na.rm = TRUE, ...)
 }
 \arguments{
   \item{x}{a numeric variable to be summarised}

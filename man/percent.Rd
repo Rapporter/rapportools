@@ -1,8 +1,9 @@
-\name{rp.percent}
+\name{percent}
+\alias{percent}
 \alias{rp.percent}
 \title{Percent}
 \usage{
-rp.percent(x, subset = NULL, na.rm = TRUE, pct = FALSE, ...)
+percent(x, subset = NULL, na.rm = TRUE, pct = FALSE, ...)
 }
 \arguments{
   \item{x}{a numeric variable to be summarised}
@@ -36,7 +37,7 @@ percents are used (\code{NA} are excluded).
 \dontrun{
 set.seed(0)
 x <- sample(5, 100, replace = TRUE)
-rp.percent(x > 2)
+percent(x > 2)
 }
 }
 

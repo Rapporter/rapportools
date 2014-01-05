@@ -12,17 +12,17 @@
 #' kurtosis(mtcars)
 #' rm(x)
 #' @export
-kurtosis <- function(x, na.rm = FALSE){
+kurtosis <- function(x, na.rm = TRUE){
 
     if (is.variable(x)){
 
         if (na.rm)
             x <- na.omit(x)
 
-        m <- mean(x)
-        s <- sd(x)
+        m <- base::mean(x)
+        s <- stats::sd(x)
         n <- length(x)
-        (((sum((x - m) ^ 4) / n) / s ^ 4) - 3)
+        (((base::sum((x - m) ^ 4) / n) / s ^ 4) - 3)
     } else {
 
         if (is.matrix(x))
@@ -49,17 +49,17 @@ kurtosis <- function(x, na.rm = FALSE){
 #' skewness(mtcars)
 #' rm(x)
 #' @export
-skewness <- function(x, na.rm = FALSE){
+skewness <- function(x, na.rm = TRUE){
 
     if (is.variable(x)){
 
         if (na.rm)
             x <- na.omit(x)
 
-        m <- mean(x)
-        s <- sd(x)
+        m <- base::mean(x)
+        s <- stats::sd(x)
         n <- length(x)
-        (sum((x - m) ^ 3) / n) / s ^ 3
+        (base::sum((x - m) ^ 3) / n) / s ^ 3
 
     } else {
 

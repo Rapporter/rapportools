@@ -1,11 +1,12 @@
-\name{rp.se.mean}
+\name{se.mean}
 \alias{rp.se.mean}
+\alias{se.mean}
 \title{Standard Error of Mean}
 \usage{
-rp.se.mean(...)
+se.mean(...)
 }
 \arguments{
-  \item{...}{parameters to be passed to \code{rp.univar}
+  \item{...}{parameters to be passed to \code{univar}
   function}
 }
 \value{
@@ -13,6 +14,6 @@ a numeric value with standard error of mean
 }
 \description{
 Calculates standard error of mean for given variable. See
-\code{\link{rp.univar}} for details.
+\code{\link{univar}} for details.
 }
 
