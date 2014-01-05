@@ -18,7 +18,7 @@
 #' @examples
 #' rp.desc("cyl", "am", c(mean, sd), mtcars, margins = TRUE)
 #' ## c
-#' rp.desc("age", c("gender", "student"), c("Average" = mean, "Deviation" = sd), ius2008, remove.duplicate = FALSE)
+#' rp.desc("hp", c("am", "gear"), c("Average" = mean, "Deviation" = sd), mtcars, remove.duplicate = FALSE)
 #' @export
 #' @importFrom plyr each is.formula
 rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = TRUE, margins = NULL, subset = TRUE, fill = NA, add.missing = FALSE, total.name = 'Total', varcol.name = 'Variable', use.labels = getOption('rapport.use.labels'), remove.duplicate = TRUE) {

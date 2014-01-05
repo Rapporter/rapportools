@@ -73,6 +73,6 @@ column labels.
 \examples{
 rp.desc("cyl", "am", c(mean, sd), mtcars, margins = TRUE)
 ## c
-rp.desc("age", c("gender", "student"), c("Average" = mean, "Deviation" = sd), ius2008, remove.duplicate = FALSE)
+rp.desc("hp", c("am", "gear"), c("Average" = mean, "Deviation" = sd), mtcars, remove.duplicate = FALSE)
 }
 
