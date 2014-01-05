@@ -11,17 +11,17 @@
 rp.univar <- function(x, subset = NULL, fn, na.rm = TRUE, ...){
 
     if (missing(x))
-        stop('variable not specified')
+        stop('Variable not specified.')
 
     if (!(is.variable(x)))
-        stop('descriptives can be calculated only for variables')
+        stop('Descriptives can be calculated only for variables.')
 
     ## subset the data
     if (!is.null(subset)){
         x.subset <- subset.default(x, subset)
         ## check if split was successful
         if (is.null(x.subset))
-            warning('data subset error, using whole sample')
+            warning('Data subset error, using whole dataset.')
         else
             x <- x.subset
     }
@@ -29,7 +29,7 @@ rp.univar <- function(x, subset = NULL, fn, na.rm = TRUE, ...){
     res <- do.call(fn, list(x, na.rm = na.rm, ...))
 
     if (length(res) > 1)
-        warning("resulting statistic has more than one value (this shouldn't have happened!)")
+        warning("Resulting statistic has more than one value. This shouldn't have happened!")
 
     return(res)
 }

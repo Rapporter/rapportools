@@ -34,9 +34,9 @@
 lambda.test <- function(table, direction = 0) {
 
     if (!is.numeric(direction))
-        stop('direction should be an integer between 0 and 2')
+        stop('Direction should be an integer between 0 and 2!')
     if (!direction %in% c(0, 1, 2))
-        stop('direction should be an integer between 0 and 2')
+        stop('Direction should be an integer between 0 and 2!')
 
     if (direction != 0)
         (sum(as.numeric(apply(table, direction, max))) - ifelse(direction == 1, max(colSums(table)), max(rowSums(table)))) / (sum(table) - ifelse(direction == 1, max(colSums(table)), max(rowSums(table))))
