@@ -12,3 +12,20 @@ This package directly loads the `reshape` package, because some helpers rely on 
 ## Suggestion
 
 Use this package inside of `rapport` templates, as it was intended. `rapport` would load the package on demand (if the template needs it), then would remove it from the search path, so that to keep the clutter at a minimal level in the `.GlobalEnv`.
+
+## Install
+
+`rapportools` can be installed from CRAN:
+
+```r
+install.packages('rapportools')
+```
+
+Or grab the most recent (development) version of the package with `devtools`:
+
+```r
+library(devtools)
+install_github('rapportools', 'rapporter')
+```
+
+The build status of that latter: [![Build Status](https://travis-ci.org/Rapporter/rapportools.png?branch=master)](https://travis-ci.org/Rapporter/rapportools)
