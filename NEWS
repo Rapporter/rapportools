@@ -1,0 +1,14 @@
+rapportools 1.00 (2014-01-07)
+----------------------------------------------------------------
+
+Initial CRAN release by moving helper functions from the "rappor" package.
+
+At the same time, some minor and major changes were also done in the package:
+
+ * removed the `rp` prefix for all functions -- with backward compatibility
+ * overwriting default min/max/mean etc. functions instead of providing some lame mock names
+ * remove the 1D limit of the above functions
+ * doc review
+ * code cleanup
+ * more insane file structure
+ * R CMD check compatibility

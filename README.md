@@ -7,7 +7,7 @@ These functions are basically wrappers to more advanced statistical methods with
 
 ## Note
 
-This package directly loads the `reshape` and `plyr` packages, because some helpers rely on the first version of `reshape` that cannot be imported. This means some extra clutter in the `.GlobalEnv`. Beside that, the basic stats functions (see above) are also overwritten, so be prepared for such changes if you `library(rapportools)`.
+This package directly loads the `reshape` package, because some helpers rely on the first version of `reshape` that cannot be imported. This means some extra clutter in the `.GlobalEnv`. Beside that, the basic stats functions (see above) are also overwritten, so be prepared for such changes if you `library(rapportools)`.
 
 ## Suggestion
 

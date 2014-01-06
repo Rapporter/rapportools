@@ -1,6 +1,6 @@
 Package: rapportools
 Maintainer: Gergely Daróczi <daroczig@rapporter.net>
-Title: Miscellaneous stats helper functions with sane defaults for reporting
+Title: Miscellaneous (stats) helper functions with sane defaults for reporting
 Type: Package
 Encoding: UTF-8
 Description: Helper functions that act as wrappers to more advanced statistical
@@ -8,7 +8,7 @@ Description: Helper functions that act as wrappers to more advanced statistical
 Author: Aleksandar Blagotić <alex@rapporter.net> and Gergely Daróczi
     <daroczig@rapporter.net>
 Version: 1.00
-Date: 2014-01-05
+Date: 2014-01-07
 BugReports: https://github.com/rapporter/rapportools/issues
 License: AGPL-3
 Depends:
