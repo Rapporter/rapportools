@@ -6,6 +6,8 @@ fraction.to.string <- function(x) {
     s <- attr(fractions(x, max.denominator = 10), 'frac')
     s <- strsplit(s, '/')[[1]]
     s <- as.numeric(s)
+    if (x > 1 || x < 0)
+        stop('Please provide a fraction (value between 0 and 1)!')
     if (length(s) == 1 && s == 0)
         return('less then one tenth')
     if (length(s) == 1 && s == 1)
