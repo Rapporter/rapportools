@@ -3,6 +3,8 @@
 #' @return string
 #' @export
 fraction.to.string <- function(x) {
+    if (length(x) > 1)
+        return(sapply(x, fraction.to.string))
     s <- attr(fractions(x, max.denominator = 10), 'frac')
     s <- strsplit(s, '/')[[1]]
     s <- as.numeric(s)
