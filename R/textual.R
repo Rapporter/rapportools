@@ -22,3 +22,19 @@ fraction.to.string <- function(x) {
     levels(s2) <- c('half', 'third', 'fourth', 'fith', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth')
     paste(s1, s2)
 }
+
+
+#' Synonym
+#' @param word a word to look-up in `rapportools::synonyms`
+#' @return a synonym if found in `rapportools::synonyms` words
+#' @export
+#' @example
+#' synonym('package')
+#' synonym('bar')
+synonym <- function(word) {
+    s <- which(sapply(synonyms, function(w) any(w %in% word)))
+    if (length(s) > 0)
+        sample(synonyms[[s]], 1)
+}
+#' @export
+synonyms <- list(c('package', 'library'), c('foo', 'bar', 'baz'))

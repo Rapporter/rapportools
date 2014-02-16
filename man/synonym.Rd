@@ -1,0 +1,16 @@
+\name{synonym}
+\alias{synonym}
+\title{Synonym}
+\usage{
+synonym(word)
+}
+\arguments{
+  \item{word}{a word to look-up in `rapportools::synonyms`}
+}
+\value{
+a synonym if found in `rapportools::synonyms` words
+}
+\description{
+Synonym
+}
+
