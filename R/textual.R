@@ -28,13 +28,29 @@ fraction.to.string <- function(x) {
 #' @param word a word to look-up in `rapportools::synonyms`
 #' @return a synonym if found in `rapportools::synonyms` words
 #' @export
-#' @example
+#' @examples
 #' synonym('package')
 #' synonym('bar')
 synonym <- function(word) {
-    s <- which(sapply(synonyms, function(w) any(w %in% word)))
+    s <- which(sapply(synonyms(), function(w) any(w %in% word)))
     if (length(s) > 0)
-        sample(synonyms[[s]], 1)
+        sample(synonyms()[[s]], 1)
 }
+
+
+#' Get or set synonyms list
+#'
+#' Without the \code{l} parameter, this function returns the saved list of synonym words. If \code{l} is set, then this word list is saved for future use.
+#' @param l a grouped list of words
 #' @export
-synonyms <- list(c('package', 'library'), c('foo', 'bar', 'baz'))
+#' @examples {
+#' synonyms(list(c('package', 'library'), c('foo', 'bar', 'baz')))
+#' synonyms()
+#' }
+synonyms <- function(l) {
+    if (base::missing(l))
+        synonyms_list
+    else
+        assignInMyNamespace('synonyms_list', l)
+}
+synonyms_list <- list(c('package', 'library'), c('foo', 'bar', 'baz'))

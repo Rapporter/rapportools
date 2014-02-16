@@ -1,0 +1,21 @@
+\name{synonyms}
+\alias{synonyms}
+\title{Get or set synonyms list}
+\usage{
+synonyms(l)
+}
+\arguments{
+  \item{l}{a grouped list of words}
+}
+\description{
+Without the \code{l} parameter, this function returns the
+saved list of synonym words. If \code{l} is set, then this
+word list is saved for future use.
+}
+\examples{
+{
+synonyms(list(c('package', 'library'), c('foo', 'bar', 'baz')))
+synonyms()
+}
+}
+

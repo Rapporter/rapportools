@@ -13,4 +13,8 @@ a synonym if found in `rapportools::synonyms` words
 \description{
 Synonym
 }
+\examples{
+synonym('package')
+synonym('bar')
+}
 
