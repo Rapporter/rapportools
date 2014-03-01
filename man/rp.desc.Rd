@@ -3,9 +3,9 @@
 \title{Descriptive Statistics}
 \usage{
 rp.desc(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = TRUE,
-  margins = NULL, subset = TRUE, fill = NA, add.missing = FALSE,
-  total.name = "Total", varcol.name = "Variable",
-  use.labels = getOption("rapport.use.labels"), remove.duplicate = TRUE)
+  margins = NULL, fill = NA, add.missing = FALSE, total.name = "Total",
+  varcol.name = "Variable", use.labels = getOption("rapport.use.labels"),
+  remove.duplicate = TRUE)
 }
 \arguments{
   \item{measure.vars}{either a character vector with
@@ -25,9 +25,6 @@ rp.desc(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = TRUE,
   values should be removed}
 
   \item{margins}{should margins be included?}
-
-  \item{subset}{a logical vector to subset the data before
-  aggregating}
 
   \item{fill}{value to replace missing level combinations
   (see documentation for eponymous argument in

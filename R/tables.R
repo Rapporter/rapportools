@@ -7,7 +7,6 @@
 #' @param data a \code{data.frame} holding variables specified in \code{id.vars} and \code{measure.vars}
 #' @param na.rm a logical value indicating whether \code{NA} values should be removed
 #' @param margins should margins be included?
-#' @param subset a logical vector to subset the data before aggregating
 #' @param fill value to replace missing level combinations (see documentation for eponymous argument in \code{\link[reshape]{melt.data.frame}})
 #' @param add.missing show missing level combinations
 #' @param total.name a character string with name for "grand" margin (defaults to "Total")
@@ -23,7 +22,7 @@
 #' @export
 #' @importFrom plyr each is.formula here ddply
 #' @importFrom reshape2 add_margins
-rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = TRUE, margins = NULL, subset = TRUE, fill = NA, add.missing = FALSE, total.name = 'Total', varcol.name = 'Variable', use.labels = getOption('rapport.use.labels'), remove.duplicate = TRUE) {
+rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = TRUE, margins = NULL, fill = NA, add.missing = FALSE, total.name = 'Total', varcol.name = 'Variable', use.labels = getOption('rapport.use.labels'), remove.duplicate = TRUE) {
 
     if (!is.character(id.vars) && !is.character(measure.vars)){
         data         <- if (is.null(id.vars)) data.frame(measure.vars) else data.frame(id.vars, measure.vars)
@@ -156,7 +155,6 @@ rp.freq <- freq <- function(f.vars, data, na.rm = TRUE, include.na = FALSE, drop
     ## R CMD check NOTE dismiss based on http://stackoverflow.com/a/8096882/564164
     N <- `%` <- NULL
 
-    ## TODO: subset
     ## TODO: add variables/data.frames instead of names
     exclude <- if (isTRUE(na.rm)) NA else NULL
 
