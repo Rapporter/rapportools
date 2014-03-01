@@ -11,8 +11,7 @@ Version: 1.0
 Date: 2014-01-07
 BugReports: https://github.com/rapporter/rapportools/issues
 License: AGPL-3
-Depends:
-    reshape
 Imports:
     plyr,
-    pander
+    pander,
+    reshape2

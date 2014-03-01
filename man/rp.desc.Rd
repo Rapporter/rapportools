@@ -24,9 +24,7 @@ rp.desc(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = TRUE,
   \item{na.rm}{a logical value indicating whether \code{NA}
   values should be removed}
 
-  \item{margins}{should margins be included? (see
-  documentation for eponymous argument in
-  \code{\link[reshape]{melt.data.frame}})}
+  \item{margins}{should margins be included?}
 
   \item{subset}{a logical vector to subset the data before
   aggregating}
@@ -71,8 +69,8 @@ is done after reshaping, in order to get pretty row and
 column labels.
 }
 \examples{
+rp.desc("cyl", NULL, c(mean, sd), mtcars)
 rp.desc("cyl", "am", c(mean, sd), mtcars, margins = TRUE)
-## c
 rp.desc("hp", c("am", "gear"), c("Average" = mean, "Deviation" = sd),
     mtcars, remove.duplicate = FALSE)
 }

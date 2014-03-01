@@ -6,7 +6,7 @@
 #' @param fn a list with functions or a character vector with function names
 #' @param data a \code{data.frame} holding variables specified in \code{id.vars} and \code{measure.vars}
 #' @param na.rm a logical value indicating whether \code{NA} values should be removed
-#' @param margins should margins be included? (see documentation for eponymous argument in \code{\link[reshape]{melt.data.frame}})
+#' @param margins should margins be included?
 #' @param subset a logical vector to subset the data before aggregating
 #' @param fill value to replace missing level combinations (see documentation for eponymous argument in \code{\link[reshape]{melt.data.frame}})
 #' @param add.missing show missing level combinations
@@ -16,12 +16,13 @@
 #' @param remove.duplicate should name/label of the variable provided in \code{measure.vars} be removed from each column if only one \code{measure.var} is provided (defaults to \code{TRUE})
 #' @return a \code{data.frame} with aggregated data
 #' @examples
+#' rp.desc("cyl", NULL, c(mean, sd), mtcars)
 #' rp.desc("cyl", "am", c(mean, sd), mtcars, margins = TRUE)
-#' ## c
 #' rp.desc("hp", c("am", "gear"), c("Average" = mean, "Deviation" = sd),
 #'     mtcars, remove.duplicate = FALSE)
 #' @export
-#' @importFrom plyr each is.formula
+#' @importFrom plyr each is.formula here ddply
+#' @importFrom reshape2 add_margins
 rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = TRUE, margins = NULL, subset = TRUE, fill = NA, add.missing = FALSE, total.name = 'Total', varcol.name = 'Variable', use.labels = getOption('rapport.use.labels'), remove.duplicate = TRUE) {
 
     if (!is.character(id.vars) && !is.character(measure.vars)){
@@ -30,16 +31,6 @@ rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = TRUE,
         measure.vars <- if (is.atomic(measure.vars)) deparse(substitute(measure.vars)) else names(measure.vars)
         names(data)  <- c(id.vars, measure.vars)
     }
-
-    ## some shorthands
-    n.measure <- length(measure.vars)
-    n.id <- length(id.vars)
-
-    m   <- melt.data.frame(data, id.vars = id.vars, measure.vars = measure.vars, na.rm = na.rm) # melt data
-    if (is.null(id.vars))
-        f <- 'variable ~ .'
-    else
-        f <- fml(id.vars, 'variable')
 
     ## get function names
     if (is.list(fn)){
@@ -69,63 +60,70 @@ rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = TRUE,
         stop('unknown function provided in "fn"')
     }
 
-    ## cast the formula (generate descriptives table)
-    ## rehape2: res <- ddply(m, id.vars, here(with), each(fn)(value))
-    res <- cast(m, f, fun.aggregate = each(fn), margins = margins, subset = subset, fill = fill, add.missing = add.missing)
+    ## some shorthands
+    n.measure <- length(measure.vars)
+    n.id <- length(id.vars)
 
-    ## a bug in reshape?
-    ## leisure vs. gender + student
-    if (na.rm)
+    ## no factors
+    if (is.null(id.vars)) {
+        res <- data[, measure.vars]
+        if (!add.missing)
+            res <- na.omit(res)
+        res <- sapply(fn, function(x) x())
+        return(res)
+    }
+
+    res <- data[, c(id.vars, measure.vars)]
+    if (!add.missing)
         res <- na.omit(res)
 
-    ## deal with column names
-    if (is.null(id.vars)) {
-        names(res) <- c(varcol.name, fn.nms)
-        if (use.labels)
-            res[, 1] <- c(label(data[measure.vars]))
-    } else {
-        ## use labels for id.vars?
-        if (use.labels)
-            names(res)[1:n.id] <- label(data[id.vars])
+    ## reshape magic happens here
+    if (margins)
+        res <- add_margins(res, vars = id.vars)
+    res <- ddply(res, id.vars, here(with), each(fn)(get(measure.vars)))
+    names(res) <- c(id.vars, names(fn))
 
-        ## remove nasty (all)
-        ## (all) occurs only if margins is not NULL or FALSE
-        ## + and when length-one vector is provided in measure.vars
-        nms.res <- names(res)           # column names
-        names(res) <- gsub('(all)', total.name, nms.res, fixed = TRUE) # fix column names
-        ## fix factor levels (and hope that somebody doesn't have "(all)" as factor level)
-        id.ind <- 1:ifelse(is.null(id.vars), 1, length(id.vars)) # indices of id.vars
-        all.ind <- '(all)' == res[id.ind]
-        if (any(all.ind, na.rm = TRUE)){
-            res[id.ind] <- lapply(res[id.ind], function(x){
-                as.character(x)
+    ## use labels for id.vars?
+    if (use.labels)
+        names(res)[1:n.id] <- label(data[id.vars])
+
+    ## remove nasty (all)
+    ## (all) occurs only if margins is not NULL or FALSE
+    ## + and when length-one vector is provided in measure.vars
+    nms.res <- names(res)           # column names
+    names(res) <- gsub('(all)', total.name, nms.res, fixed = TRUE) # fix column names
+    ## fix factor levels (and hope that somebody doesn't have "(all)" as factor level)
+    id.ind <- 1:ifelse(is.null(id.vars), 1, length(id.vars)) # indices of id.vars
+    all.ind <- '(all)' == res[id.ind]
+    if (any(all.ind, na.rm = TRUE)){
+        res[id.ind] <- lapply(res[id.ind], function(x){
+            as.character(x)
+        })
+    }
+
+    ## remove duplicate measure.vars names
+    ind.measure <- n.measure:ncol(res)
+    nms.measure <- names(res)[ind.measure]           # measure.vars names
+
+    ## remove duplicate var names
+    if (n.measure == 1 && remove.duplicate) {
+        names(res)[ind.measure] <- vgsub(sprintf('(^%s_)', measure.vars), '', nms.measure)
+    } else {
+
+        ## convert "var_stat" to "stat (var)"
+        nms.res <- names(res)               # column names, again
+        unds.ind <- grep('_', nms.res)      # underscore of indices
+        nms.measure <- names(res)[ind.measure] # measure.vars names, again
+
+        if (length(unds.ind)){
+            names(res)[unds.ind] <- lapply(strsplit(nms.res[unds.ind], '_'), function(x){
+                sprintf('%s (%s)', tail(x, 1), paste(head(x, -1), collapse = '_'))
             })
         }
 
-        ## remove duplicate measure.vars names
-        ind.measure <- n.measure:ncol(res)
-        nms.measure <- names(res)[ind.measure]           # measure.vars names
-
-        ## remove duplicate var names
-        if (n.measure == 1 && remove.duplicate) {
-            names(res)[ind.measure] <- vgsub(sprintf('(^%s_)', measure.vars), '', nms.measure)
-        } else {
-
-            ## convert "var_stat" to "stat (var)"
-            nms.res <- names(res)               # column names, again
-            unds.ind <- grep('_', nms.res)      # underscore of indices
-            nms.measure <- names(res)[ind.measure] # measure.vars names, again
-
-            if (length(unds.ind)){
-                names(res)[unds.ind] <- lapply(strsplit(nms.res[unds.ind], '_'), function(x){
-                    sprintf('%s (%s)', tail(x, 1), paste(head(x, -1), collapse = '_'))
-                })
-            }
-
-            ## use labels for measure vars?
-            if (use.labels)
-                names(res)[ind.measure] <- vgsub(measure.vars, label(data[measure.vars]), names(res)[ind.measure])
-        }
+        ## use labels for measure vars?
+        if (use.labels)
+            names(res)[ind.measure] <- vgsub(measure.vars, label(data[measure.vars]), names(res)[ind.measure])
     }
 
     rownames(res) <- NULL
