@@ -16,4 +16,4 @@ check: build
 	R CMD check $(PKGNAME)_$(PKGVERS).tar.gz --as-cran
 
 test:
-	Rscript -e 'library(rapportools);library(testthat);test_package("rapportools")'
+	Rscript -e 'library(rapportools);library(methods);library(testthat);test_package("rapportools")'
