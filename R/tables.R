@@ -67,7 +67,7 @@ rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE
         res <- data[, measure.vars]
         if (!na.rm)
             res <- na.omit(res)
-        res <- sapply(fn, function(x) x())
+        res <- sapply(fn, function(x) x(res))
         return(res)
     }
 
