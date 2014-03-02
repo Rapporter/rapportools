@@ -21,7 +21,7 @@
 #' @export
 #' @importFrom plyr each is.formula here ddply
 #' @importFrom reshape2 add_margins
-rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE, margins = NULL, fill = NA, total.name = 'Total', varcol.name = 'Variable', use.labels = getOption('rapport.use.labels'), remove.duplicate = TRUE) {
+rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE, margins = TRUE, fill = NA, total.name = 'Total', varcol.name = 'Variable', use.labels = getOption('rapport.use.labels'), remove.duplicate = TRUE) {
 
     if (!is.character(id.vars) && !is.character(measure.vars)){
         data         <- if (is.null(id.vars)) data.frame(measure.vars) else data.frame(id.vars, measure.vars)

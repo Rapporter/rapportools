@@ -3,7 +3,7 @@
 \title{Descriptive Statistics}
 \usage{
 rp.desc(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE,
-  margins = NULL, fill = NA, total.name = "Total",
+  margins = TRUE, fill = NA, total.name = "Total",
   varcol.name = "Variable", use.labels = getOption("rapport.use.labels"),
   remove.duplicate = TRUE)
 }
