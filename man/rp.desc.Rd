@@ -3,8 +3,8 @@
 \title{Descriptive Statistics}
 \usage{
 rp.desc(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE,
-  margins = TRUE, fill = NA, total.name = "Total",
-  use.labels = getOption("rapport.use.labels"), remove.duplicate = TRUE)
+  margins = TRUE, total.name = "Total",
+  use.labels = getOption("rapport.use.labels"))
 }
 \arguments{
   \item{measure.vars}{either a character vector with
@@ -25,10 +25,6 @@ rp.desc(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE,
 
   \item{margins}{should margins be included?}
 
-  \item{fill}{value to replace missing level combinations
-  (see documentation for eponymous argument in
-  \code{\link[reshape]{melt.data.frame}})}
-
   \item{total.name}{a character string with name for
   "grand" margin (defaults to "Total")}
 
@@ -36,11 +32,6 @@ rp.desc(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE,
   table header (handle with care, especially if you have
   lengthy labels). Defaults to value specified in
   \code{rapport.use.labels} option.}
-
-  \item{remove.duplicate}{should name/label of the variable
-  provided in \code{measure.vars} be removed from each
-  column if only one \code{measure.var} is provided
-  (defaults to \code{TRUE})}
 }
 \value{
 a \code{data.frame} with aggregated data

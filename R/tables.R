@@ -7,10 +7,8 @@
 #' @param data a \code{data.frame} holding variables specified in \code{id.vars} and \code{measure.vars}
 #' @param na.rm a logical value indicating whether \code{NA} values should be removed
 #' @param margins should margins be included?
-#' @param fill value to replace missing level combinations (see documentation for eponymous argument in \code{\link[reshape]{melt.data.frame}})
 #' @param total.name a character string with name for "grand" margin (defaults to "Total")
 #' @param use.labels use labels instead of variable names in table header (handle with care, especially if you have lengthy labels). Defaults to value specified in \code{rapport.use.labels} option.
-#' @param remove.duplicate should name/label of the variable provided in \code{measure.vars} be removed from each column if only one \code{measure.var} is provided (defaults to \code{TRUE})
 #' @return a \code{data.frame} with aggregated data
 #' @examples
 #' rp.desc("cyl", NULL, c(mean, sd), mtcars)
@@ -20,7 +18,7 @@
 #' @export
 #' @importFrom plyr each is.formula here ddply
 #' @importFrom reshape2 add_margins
-rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE, margins = TRUE, fill = NA, total.name = 'Total', use.labels = getOption('rapport.use.labels'), remove.duplicate = TRUE) {
+rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE, margins = TRUE, total.name = 'Total', use.labels = getOption('rapport.use.labels')) {
 
     if (!is.character(id.vars) && !is.character(measure.vars)){
         data         <- if (is.null(id.vars)) data.frame(measure.vars) else data.frame(id.vars, measure.vars)
@@ -87,31 +85,7 @@ rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE
     ## update (all)
     res[, 1:length(id.vars)] <- apply(res[, 1:length(id.vars)], 2, sub, pattern = '^\\(all\\)$', replacement = total.name)
 
-    ## remove duplicate measure.vars names
-    ind.measure <- n.measure:ncol(res)
-    nms.measure <- names(res)[ind.measure]           # measure.vars names
-
-    ## remove duplicate var names
-    if (n.measure == 1 && remove.duplicate) {
-        names(res)[ind.measure] <- vgsub(sprintf('(^%s_)', measure.vars), '', nms.measure)
-    } else {
-
-        ## convert "var_stat" to "stat (var)"
-        nms.res <- names(res)               # column names, again
-        unds.ind <- grep('_', nms.res)      # underscore of indices
-        nms.measure <- names(res)[ind.measure] # measure.vars names, again
-
-        if (length(unds.ind)){
-            names(res)[unds.ind] <- lapply(strsplit(nms.res[unds.ind], '_'), function(x){
-                sprintf('%s (%s)', tail(x, 1), paste(head(x, -1), collapse = '_'))
-            })
-        }
-
-        ## use labels for measure vars?
-        if (use.labels)
-            names(res)[ind.measure] <- vgsub(measure.vars, label(data[measure.vars]), names(res)[ind.measure])
-    }
-
+    ## return
     rownames(res) <- NULL
     class(res) <- c('rp.table', 'data.frame')
     return(res)
