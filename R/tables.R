@@ -84,19 +84,8 @@ rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE
     if (use.labels)
         names(res)[1:n.id] <- label(data[id.vars])
 
-    ## remove nasty (all)
-    ## (all) occurs only if margins is not NULL or FALSE
-    ## + and when length-one vector is provided in measure.vars
-    nms.res <- names(res)           # column names
-    names(res) <- gsub('(all)', total.name, nms.res, fixed = TRUE) # fix column names
-    ## fix factor levels (and hope that somebody doesn't have "(all)" as factor level)
-    id.ind <- 1:ifelse(is.null(id.vars), 1, length(id.vars)) # indices of id.vars
-    all.ind <- '(all)' == res[id.ind]
-    if (any(all.ind, na.rm = TRUE)){
-        res[id.ind] <- lapply(res[id.ind], function(x){
-            as.character(x)
-        })
-    }
+    ## update (all)
+    res[, 1:length(id.vars)] <- apply(res[, 1:length(id.vars)], 2, sub, pattern = '^\\(all\\)$', replacement = total.name)
 
     ## remove duplicate measure.vars names
     ind.measure <- n.measure:ncol(res)
