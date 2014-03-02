@@ -2,8 +2,8 @@
 \alias{rp.desc}
 \title{Descriptive Statistics}
 \usage{
-rp.desc(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = TRUE,
-  margins = NULL, fill = NA, add.missing = FALSE, total.name = "Total",
+rp.desc(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE,
+  margins = NULL, fill = NA, total.name = "Total",
   varcol.name = "Variable", use.labels = getOption("rapport.use.labels"),
   remove.duplicate = TRUE)
 }
@@ -29,8 +29,6 @@ rp.desc(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = TRUE,
   \item{fill}{value to replace missing level combinations
   (see documentation for eponymous argument in
   \code{\link[reshape]{melt.data.frame}})}
-
-  \item{add.missing}{show missing level combinations}
 
   \item{total.name}{a character string with name for
   "grand" margin (defaults to "Total")}

@@ -8,7 +8,6 @@
 #' @param na.rm a logical value indicating whether \code{NA} values should be removed
 #' @param margins should margins be included?
 #' @param fill value to replace missing level combinations (see documentation for eponymous argument in \code{\link[reshape]{melt.data.frame}})
-#' @param add.missing show missing level combinations
 #' @param total.name a character string with name for "grand" margin (defaults to "Total")
 #' @param varcol.name character string for column that contains summarised variables (defaults to \code{"Variable"})
 #' @param use.labels use labels instead of variable names in table header (handle with care, especially if you have lengthy labels). Defaults to value specified in \code{rapport.use.labels} option.
@@ -22,7 +21,7 @@
 #' @export
 #' @importFrom plyr each is.formula here ddply
 #' @importFrom reshape2 add_margins
-rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = TRUE, margins = NULL, fill = NA, add.missing = FALSE, total.name = 'Total', varcol.name = 'Variable', use.labels = getOption('rapport.use.labels'), remove.duplicate = TRUE) {
+rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE, margins = NULL, fill = NA, total.name = 'Total', varcol.name = 'Variable', use.labels = getOption('rapport.use.labels'), remove.duplicate = TRUE) {
 
     if (!is.character(id.vars) && !is.character(measure.vars)){
         data         <- if (is.null(id.vars)) data.frame(measure.vars) else data.frame(id.vars, measure.vars)
@@ -66,14 +65,14 @@ rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = TRUE,
     ## no factors
     if (is.null(id.vars)) {
         res <- data[, measure.vars]
-        if (!add.missing)
+        if (!na.rm)
             res <- na.omit(res)
         res <- sapply(fn, function(x) x())
         return(res)
     }
 
     res <- data[, c(id.vars, measure.vars)]
-    if (!add.missing)
+    if (!na.rm)
         res <- na.omit(res)
 
     ## reshape magic happens here
