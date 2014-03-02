@@ -83,7 +83,7 @@ rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE
         names(res)[1:n.id] <- label(data[id.vars])
 
     ## update (all)
-    res[, 1:length(id.vars)] <- apply(res[, 1:length(id.vars)], 2, sub, pattern = '^\\(all\\)$', replacement = total.name)
+    res[, 1:length(id.vars)] <- apply(res[, 1:length(id.vars), drop = FALSE], 2, sub, pattern = '^\\(all\\)$', replacement = total.name)
 
     ## return
     rownames(res) <- NULL
