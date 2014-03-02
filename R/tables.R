@@ -64,14 +64,14 @@ rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE
     ## no factors
     if (is.null(id.vars)) {
         res <- data[, measure.vars]
-        if (!na.rm)
+        if (na.rm)
             res <- na.omit(res)
         res <- sapply(fn, function(x) x(res))
         return(res)
     }
 
     res <- data[, c(id.vars, measure.vars)]
-    if (!na.rm)
+    if (na.rm)
         res <- na.omit(res)
 
     ## reshape magic happens here
