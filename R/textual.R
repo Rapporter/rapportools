@@ -2,6 +2,7 @@
 #' @param x numeric
 #' @return string
 #' @export
+#' @importFrom MASS fractions
 fraction.to.string <- function(x) {
     if (length(x) > 1)
         return(sapply(x, fraction.to.string))

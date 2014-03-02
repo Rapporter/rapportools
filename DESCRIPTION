@@ -14,4 +14,5 @@ License: AGPL-3
 Imports:
     plyr,
     pander,
-    reshape2
+    reshape2,
+    MASS
