@@ -13,8 +13,7 @@
 #' @examples
 #' rp.desc("cyl", NULL, c(mean, sd), mtcars)
 #' rp.desc("cyl", "am", c(mean, sd), mtcars, margins = TRUE)
-#' rp.desc("hp", c("am", "gear"), c("Average" = mean, "Deviation" = sd),
-#'     mtcars, remove.duplicate = FALSE)
+#' rp.desc("hp", c("am", "gear"), c("Average" = mean, "Deviation" = sd), mtcars)
 #' @export
 #' @importFrom plyr each is.formula here ddply
 #' @importFrom reshape2 add_margins
