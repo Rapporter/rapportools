@@ -4,8 +4,7 @@
 \usage{
 rp.desc(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE,
   margins = TRUE, fill = NA, total.name = "Total",
-  varcol.name = "Variable", use.labels = getOption("rapport.use.labels"),
-  remove.duplicate = TRUE)
+  use.labels = getOption("rapport.use.labels"), remove.duplicate = TRUE)
 }
 \arguments{
   \item{measure.vars}{either a character vector with
@@ -32,10 +31,6 @@ rp.desc(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE,
 
   \item{total.name}{a character string with name for
   "grand" margin (defaults to "Total")}
-
-  \item{varcol.name}{character string for column that
-  contains summarised variables (defaults to
-  \code{"Variable"})}
 
   \item{use.labels}{use labels instead of variable names in
   table header (handle with care, especially if you have

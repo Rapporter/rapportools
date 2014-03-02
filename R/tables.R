@@ -9,7 +9,6 @@
 #' @param margins should margins be included?
 #' @param fill value to replace missing level combinations (see documentation for eponymous argument in \code{\link[reshape]{melt.data.frame}})
 #' @param total.name a character string with name for "grand" margin (defaults to "Total")
-#' @param varcol.name character string for column that contains summarised variables (defaults to \code{"Variable"})
 #' @param use.labels use labels instead of variable names in table header (handle with care, especially if you have lengthy labels). Defaults to value specified in \code{rapport.use.labels} option.
 #' @param remove.duplicate should name/label of the variable provided in \code{measure.vars} be removed from each column if only one \code{measure.var} is provided (defaults to \code{TRUE})
 #' @return a \code{data.frame} with aggregated data
@@ -21,7 +20,7 @@
 #' @export
 #' @importFrom plyr each is.formula here ddply
 #' @importFrom reshape2 add_margins
-rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE, margins = TRUE, fill = NA, total.name = 'Total', varcol.name = 'Variable', use.labels = getOption('rapport.use.labels'), remove.duplicate = TRUE) {
+rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE, margins = TRUE, fill = NA, total.name = 'Total', use.labels = getOption('rapport.use.labels'), remove.duplicate = TRUE) {
 
     if (!is.character(id.vars) && !is.character(measure.vars)){
         data         <- if (is.null(id.vars)) data.frame(measure.vars) else data.frame(id.vars, measure.vars)
