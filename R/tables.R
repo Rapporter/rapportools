@@ -35,7 +35,7 @@ rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE
 
         ## fun list has no named elements, use deparsed/substituted ones
         if (!length(fn.nms)){
-            names(fn) <- fn.subs
+            fn.nms <- names(fn) <- fn.subs
         } else {
             ## some function names found...
             if (any(fn.ind)){
@@ -63,7 +63,7 @@ rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE
         res <- data[, measure.vars]
         if (na.rm)
             res <- na.omit(res)
-        res <- sapply(fn, function(x) x(res))
+        res <- sapply(fn.nms, function(x) get(x)(res))
         return(res)
     }
 
