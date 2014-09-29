@@ -36,7 +36,7 @@ rp.outlier <- function(x) {
     }
 
     model <- lm(x ~ 1)
-    crit <- suppressWarnings(lundcrit(0.1, length(x), model$coefficients))
+    crit <- suppressWarnings(lundcrit(0.1, length(x), length(model$coefficients)))
     if (!is.na(crit))
         return(x[which(abs(rstandard(model)) > crit)])
     else
