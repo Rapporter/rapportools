@@ -109,7 +109,7 @@ rp.percent <- percent
 #' @export
 #' @aliases min rp.min
 min <- function(...)
-    univar(..., fn = base::min)
+    univar(unlist(list(...)), fn = base::min)
 #' @export
 rp.min <- min
 
@@ -122,7 +122,7 @@ rp.min <- min
 #' @export
 #' @aliases max rp.max
 max <- function(...)
-    univar(..., fn = base::max)
+    univar(unlist(list(...)), fn = base::max)
 #' @export
 rp.max <- max
 
@@ -135,7 +135,7 @@ rp.max <- max
 #' @export
 #' @aliases range rp.range
 range <- function(...)
-    univar(..., fn = function(...) diff(base::range(..1, ...)))
+    univar(unlist(list(...)), fn = function(...) diff(base::range(..1, ...)))
 #' @export
 rp.range <- range
 
@@ -148,7 +148,7 @@ rp.range <- range
 #' @export
 #' @aliases sum rp.sum
 sum <- function(...)
-    univar(..., fn = base::sum)
+    univar(unlist(list(...)), fn = base::sum)
 #' @export
 rp.sum <- sum
 
