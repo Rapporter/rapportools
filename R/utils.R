@@ -276,6 +276,8 @@ tocamel <- function(x, delim = '[^[:alnum:]]', upper = FALSE, sep = '', ...){
 #' @export
 capitalise <- function(x){
     stopifnot(is.character(x))
+    if (nchar(x) == 1)
+        return(toupper(x))
     s <- strsplit(x, '', '')
     sapply(s, function(x){
         paste(toupper(x[1]), paste(x[2:length(x)], collapse = ''), collapse = '', sep = '')
