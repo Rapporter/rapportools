@@ -25,7 +25,7 @@ Or grab the most recent (development) version of the package with `devtools`:
 
 ```r
 library(devtools)
-install_github('rapportools', 'rapporter')
+install_github('rapporter/rapportools')
 ```
 
 The build status of that latter: [![Build Status](https://travis-ci.org/Rapporter/rapportools.png?branch=master)](https://travis-ci.org/Rapporter/rapportools)
