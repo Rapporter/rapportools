@@ -48,6 +48,7 @@ synonym <- function(word) {
 #' synonyms(list(c('package', 'library'), c('foo', 'bar', 'baz')))
 #' synonyms()
 #' }
+#' @importFrom utils assignInMyNamespace
 synonyms <- function(l) {
     if (base::missing(l))
         synonyms_list

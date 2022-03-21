@@ -12,6 +12,7 @@
 #' kurtosis(mtcars)
 #' rm(x)
 #' @export
+#' @importFrom stats na.omit
 kurtosis <- function(x, na.rm = TRUE){
 
     if (is.variable(x)){

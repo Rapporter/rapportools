@@ -16,3 +16,4 @@ Makefile
 .ackrc
 ^.*\.Rproj$
 ^\.Rproj\.user$
+.backup

@@ -186,7 +186,7 @@ fml <- function(left, right, join.left = ' + ', join.right = ' + '){
 #' @param x a numeric vector with
 #' @return a list with two elements: vector of run lengths, and another list of values corresponding to generated sequences' lengths.
 #' @author Gabor Grothendieck <ggrothendieck@@gmail.com>
-#' @references See original thread for more details \url{http://stackoverflow.com/a/8467446/457898}. Special thanks to Gabor Grothendieck for this one!
+#' @references See original thread for more details \url{https://stackoverflow.com/a/8467446/564164}. Special thanks to Gabor Grothendieck for this one!
 #' @export
 adj.rle <- function(x){
 
@@ -214,7 +214,7 @@ catn <- function(...){
 #' @param replacement see eponymous argument for \code{\link{gsub}} function
 #' @param x see eponymous argument for \code{\link{gsub}} function
 #' @param ... additional arguments for \code{\link{gsub}} function
-#' @references See original thread for more details \url{http://stackoverflow.com/a/6954308/457898}. Special thanks to user Jean-Robert for this one!
+#' @references See original thread for more details \url{https://stackoverflow.com/a/6954308/564164}. Special thanks to user Jean-Robert for this one!
 #' @return a character vector with string replacements
 #' @export
 vgsub <- function(pattern, replacement, x, ...){

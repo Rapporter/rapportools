@@ -16,7 +16,7 @@ a list with two elements: vector of run lengths, and another list of values corr
 Similar to \code{\link{rle}} function, this function detects "runs" of adjacent integers, and displays vector of run lengths and list of corresponding integer sequences.
 }
 \references{
-See original thread for more details \url{http://stackoverflow.com/a/8467446/457898}. Special thanks to Gabor Grothendieck for this one!
+See original thread for more details \url{https://stackoverflow.com/a/8467446/564164}. Special thanks to Gabor Grothendieck for this one!
 }
 \author{
 Gabor Grothendieck <ggrothendieck@gmail.com>

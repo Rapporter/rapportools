@@ -22,5 +22,5 @@ a character vector with string replacements
 A simple wrapper for \code{\link{gsub}} that replaces all patterns from \code{pattern} argument with ones in \code{replacement} over vector provided in argument \code{x}.
 }
 \references{
-See original thread for more details \url{http://stackoverflow.com/a/6954308/457898}. Special thanks to user Jean-Robert for this one!
+See original thread for more details \url{https://stackoverflow.com/a/6954308/564164}. Special thanks to user Jean-Robert for this one!
 }

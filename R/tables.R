@@ -111,6 +111,8 @@ rp.desc <- function(measure.vars, id.vars = NULL, fn, data = NULL, na.rm = FALSE
 #' }
 #' @export
 #' @importFrom reshape2 melt
+#' @importFrom stats xtabs na.pass complete.cases
+#' @importFrom utils tail
 rp.freq <- freq <- function(f.vars, data, na.rm = TRUE, include.na = FALSE, drop.unused.levels = FALSE, count = TRUE, pct = TRUE, cumul.count = TRUE, cumul.pct = TRUE, total.name = 'Total', reorder = FALSE){
 
     ## R CMD check NOTE dismiss based on http://stackoverflow.com/a/8096882/564164

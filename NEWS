@@ -1,4 +1,17 @@
-rapportools 1.00 (2014-01-07)
+rapportools 1.1 (2022-03-22)
+----------------------------------------------------------------
+
+CRAN maintenance release ... with quite some changes from March of 2014,
+which never made it to CRAN before:
+
+* new helper function turning a fraction to ordinary English language
+* new helper function for synonyms
+* deprecate reshape for reshape2
+* fix subset and other small issues
+
+Full details at https://github.com/Rapporter/rapportools/compare/v1.0...v1.1
+
+rapportools 1.0 (2014-01-07)
 ----------------------------------------------------------------
 
 Initial CRAN release by moving helper functions from the "rappor" package.
