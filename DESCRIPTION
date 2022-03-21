@@ -16,3 +16,4 @@ Imports:
     pander,
     reshape2,
     MASS
+RoxygenNote: 7.1.1
