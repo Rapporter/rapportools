@@ -1,5 +1,10 @@
-rapportools 1.1 (2022-03-22)
-----------------------------------------------------------------
+# rapportools 1.2 (2025-03-01)
+
+CRAN maintenance release with no feature updates.
+
+Full details at https://github.com/Rapporter/rapportools/compare/v1.1...v1.2
+
+# rapportools 1.1 (2022-03-22)
 
 CRAN maintenance release ... with quite some changes from March of 2014,
 which never made it to CRAN before:
@@ -11,17 +16,16 @@ which never made it to CRAN before:
 
 Full details at https://github.com/Rapporter/rapportools/compare/v1.0...v1.1
 
-rapportools 1.0 (2014-01-07)
-----------------------------------------------------------------
+# rapportools 1.0 (2014-01-07)
 
 Initial CRAN release by moving helper functions from the "rappor" package.
 
 At the same time, some minor and major changes were also done in the package:
 
- * removed the `rp` prefix for all functions -- with backward compatibility
- * overwriting default min/max/mean etc. functions instead of providing some lame mock names
- * remove the 1D limit of the above functions
- * doc review
- * code cleanup
- * more insane file structure
- * R CMD check compatibility
+* removed the `rp` prefix for all functions -- with backward compatibility
+* overwriting default min/max/mean etc. functions instead of providing some lame mock names
+* remove the 1D limit of the above functions
+* doc review
+* code cleanup
+* more insane file structure
+* R CMD check compatibility

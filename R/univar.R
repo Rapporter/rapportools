@@ -103,7 +103,7 @@ rp.percent <- percent
 
 #' Minimum
 #'
-#' Returns the minimum of all values in a vector by passing \{code{\link{min}} as \code{fn} argument to \code{\link{univar}} function.
+#' Returns the minimum of all values in a vector by passing \code{\link{min}} as \code{fn} argument to \code{\link{univar}} function.
 #' @param ... parameters to be passed to \code{univar} function
 #' @return a numeric value with minimum value
 #' @export
@@ -116,7 +116,7 @@ rp.min <- min
 
 #' Maximum
 #'
-#' Returns the maximum of all values in a vector by passing \{code{\link{max}} as \code{fn} argument to \code{\link{univar}} function.
+#' Returns the maximum of all values in a vector by passing \code{\link{max}} as \code{fn} argument to \code{\link{univar}} function.
 #' @param ... parameters to be passed to \code{univar} function
 #' @return a numeric value with maximum value
 #' @export

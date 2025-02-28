@@ -14,5 +14,5 @@ min(...)
 a numeric value with minimum value
 }
 \description{
-Returns the minimum of all values in a vector by passing \{code{\link{min}} as \code{fn} argument to \code{\link{univar}} function.
+Returns the minimum of all values in a vector by passing \code{\link{min}} as \code{fn} argument to \code{\link{univar}} function.
 }

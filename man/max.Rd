@@ -14,5 +14,5 @@ max(...)
 a numeric value with maximum value
 }
 \description{
-Returns the maximum of all values in a vector by passing \{code{\link{max}} as \code{fn} argument to \code{\link{univar}} function.
+Returns the maximum of all values in a vector by passing \code{\link{max}} as \code{fn} argument to \code{\link{univar}} function.
 }
