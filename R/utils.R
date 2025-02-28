@@ -280,7 +280,7 @@ capitalise <- function(x){
         return(sapply(x, capitalise, USE.NAMES = FALSE))
     if (nchar(x) == 1)
         return(toupper(x))
-    s <- strsplit(x, '', '')
+    s <- strsplit(x, '', fixed = TRUE)
     sapply(s, function(x){
         paste(toupper(x[1]), paste(x[2:length(x)], collapse = ''), collapse = '', sep = '')
     })
